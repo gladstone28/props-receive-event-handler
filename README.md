@@ -4,9 +4,10 @@ https://www.codecademy.com/courses/react-101/lessons/this-props/exercises/handle
 
 
 
-rops
-handleEvent, onEvent, and props.onEvent
-9 min
+### Props
+
+**handleEvent, onEvent, and props.onEvent**
+
 Let’s talk about naming things.
 
 When you pass an event handler as a prop, as you just did, there are two names that you have to choose. Both naming choices occur in the parent component, the component that defines the event handler and passes it.

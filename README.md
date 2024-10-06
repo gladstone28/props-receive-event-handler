@@ -1,70 +1,92 @@
-# Getting Started with Create React App
+link to lesson
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+https://www.codecademy.com/courses/react-101/lessons/this-props/exercises/handleevent-onevent-props-event
 
-## Available Scripts
 
-In the project directory, you can run:
 
-### `npm start`
+rops
+handleEvent, onEvent, and props.onEvent
+9 min
+Let’s talk about naming things.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+When you pass an event handler as a prop, as you just did, there are two names that you have to choose. Both naming choices occur in the parent component, the component that defines the event handler and passes it.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+The first name that you have to choose is the name of the event handler itself.
 
-### `npm test`
+Look at Talker.js, lines 5 through 11. This is our event handler. We chose to name it talk.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+The second name that you have to choose is the name of the prop that you will use to pass the event handler. This is the same thing as the attribute name.
 
-### `npm run build`
+For our prop name, we also chose talk, as shown on line 12:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```
+return <Button talk={talk} />;
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+These two names can be whatever we want. However, there is a naming convention that is commonly used.
 
-### `npm run eject`
+Here’s how the naming convention works: first, think about what type of event you are listening for. In our example, the event type was “click”. If you are listening for a “click” event, then you name your event handler handleClick. If you are listening for a “hover” event, then you name your event handler handleHover:
+```
+function myClass() {
+  function handleHover() {
+    alert('I am an event handler.');
+    alert('I will be called in response to "hover" events.');
+  }
+}
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+Your prop name should be the word on, plus your event type. If you are listening for a “click” event, then you name your prop onClick. If you are listening for a “hover” event, then you name your prop onHover:
+```
+function myClass(){
+  function handleHover() {
+    alert('I am an event handler.');
+    alert('I will listen for a "hover" event.');
+  }
+   return <Child onHover={handleHover} />;
+}
+```
+### Instructions
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+In Talker.js, change the event handler’s name from talk to handleClick.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+Open Talker.js and rename the talk method to handleClick.
 
-## Learn More
+Checkpoint 2 Passed
+2.
+In Talker‘s return statement, change the prop‘s name from talk to onClick.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Change the prop’s value to the newly named event handler, handleClick.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Open Talker.js and take look at the return statement. Rename <Button />‘s talk attribute to onClick and set it to {handleClick}.
 
-### Code Splitting
+Checkpoint 3 Passed
+3.
+Select Button.js.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+Change Button‘s return statement so that it expects a prop named onClick instead of talk.
 
-### Analyzing the Bundle Size
+Open Button.js. Change usages of props.talk to props.onClick.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+Checkpoint 4 Passed
+4.
+One major source of confusion is the fact that names like onClick have special meanings, but this is only if they’re used on HTML-like elements.
 
-### Making a Progressive Web App
+Look at Button.js. When you give the <button> element an attribute named onClick, then this onClick attribute has a special purpose. As you’ve learned, this special onClick attribute creates an event listener that listens for clicks on the <button> element:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+// In Button.js: The onClick attribute creates an event listener:
+<button onClick={props.onClick}>
+  Click me!
+</button>
 
-### Advanced Configuration
+Now, look at Talker.js. Here, the onClick attribute you gave to <Button /> does not create an event listener—it’s just a name of an attribute:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+// In Talker.js: The onClick attribute is just a normal attribute name.
+<Button onClick={handleClick} />
 
-### Deployment
+The reason for this is that <Button /> is not an HTML-like JSX element; it’s a component instance.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+Names like onClick only create event listeners if they’re used on HTML-like JSX elements. Otherwise, they’re just ordinary prop names.
 
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Run your program to ensure your button is working as intended.
